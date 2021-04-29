@@ -71,3 +71,5 @@ C:\Users\User\Desktop\SENAI\ATVIDADES\SENAI_SEMESTER2_HROADS\BACKEND\senai.hroad
 C:\Users\User\Desktop\SENAI\ATVIDADES\SENAI_SEMESTER2_HROADS\BACKEND\senai.hroads.webAPI\senai.hroads.webAPI\obj\Debug\net5.0\ref\senai.hroads.webAPI.dll
 C:\Users\User\Desktop\SENAI\ATVIDADES\SENAI_SEMESTER2_HROADS\BACKEND\senai.hroads.webAPI\senai.hroads.webAPI\obj\Debug\net5.0\senai.hroads.webAPI.pdb
 C:\Users\User\Desktop\SENAI\ATVIDADES\SENAI_SEMESTER2_HROADS\BACKEND\senai.hroads.webAPI\senai.hroads.webAPI\obj\Debug\net5.0\senai.hroads.webAPI.genruntimeconfig.cache
+C:\Users\User\Desktop\SENAI\ATVIDADES\SENAI_SEMESTER2_HROADS\BACKEND\senai.hroads.webAPI\senai.hroads.webAPI\bin\Debug\net5.0\senai.hroads.webAPI.xml
+C:\Users\User\Desktop\SENAI\ATVIDADES\SENAI_SEMESTER2_HROADS\BACKEND\senai.hroads.webAPI\senai.hroads.webAPI\obj\Debug\net5.0\senai.hroads.webAPI.xml

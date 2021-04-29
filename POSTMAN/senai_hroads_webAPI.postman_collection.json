@@ -1,0 +1,929 @@
+{
+	"info": {
+		"_postman_id": "981a9dff-92ae-41b5-a84d-b576a8e7c74d",
+		"name": "senai_hroads_webAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "Usuario.Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jogador@jogador.com\",\r\n    \"senha\": \"jogador\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "classes",
+			"item": [
+				{
+					"name": "Classe.Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/classes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"classes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classe.Cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeClasse\": \"Endermage\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/classes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"classes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classe.Atualizar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeClasse\": \"Stomper\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/classes/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"classes",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classe.BuscarPorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/classes/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"classes",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classe.Deletar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/classes/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"classes",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "habilidades",
+			"item": [
+				{
+					"name": "Habilidade.Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/habilidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"habilidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Habilidade.Cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeHabilidade\": \"teste2\",\r\n    \"idTipoHabilidade\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/habilidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"habilidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Habilidade.Atualizar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeHabilidade\": \"MAgogogoog\",\r\n    \"idTipoHabilidade\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/habilidades/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"habilidades",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Habilidade.BuscarPorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/habilidades/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"habilidades",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Habilidade.Deletar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/habilidades/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"habilidades",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tipohabilidades",
+			"item": [
+				{
+					"name": "TipoHabilidade.Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/tipohabilidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipohabilidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TipoHabilidade.Cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeTipoHabilidade\": \"Voar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/tipohabilidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipohabilidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TipoHabilidade.Atualizar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeTipoHabilidade\": \"Cair\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/tipohabilidades/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipohabilidades",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TipoHabilidade.BuscarPorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/tipohabilidades/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipohabilidades",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TipoHabilidade.Deletar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/tipohabilidades/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipohabilidades",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "personagens",
+			"item": [
+				{
+					"name": "Personagem.Listar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/personagens",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"personagens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Personagem.Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeClasse\": \"Endermage\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/personagens",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"personagens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Personagem.Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeClasse\": \"Stomper\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/personagens/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"personagens",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Personagem.BuscarPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/personagens/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"personagens",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Personagem.Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/personagens/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"personagens",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tipoUsuarios",
+			"item": [
+				{
+					"name": "TipoUsuario.Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/tipousuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipousuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TipoUsuario.Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"permissao\": \"Endermage\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/tipousuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipousuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TipoUsuario.Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"permissao\": \"dasdee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/tipousuarios/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipousuarios",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TipoUsuario.BuscarPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/tipousuarios/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipousuarios",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TipoUsuario.Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/tipousuarios/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipousuarios",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuarios",
+			"item": [
+				{
+					"name": "Usuario.Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario.Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"blabluebleble@email.com\",\r\n    \"senha\": \"123\",\r\n    \"idTipoUsuario\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario.Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeClasse\": \"Stomper\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/usuarios/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"usuarios",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario.BuscarPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/usuarios/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"usuarios",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario.Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/usuarios/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"usuarios",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

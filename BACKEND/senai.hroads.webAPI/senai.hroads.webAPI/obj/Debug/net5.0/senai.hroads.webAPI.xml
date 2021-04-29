@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>senai.hroads.webAPI</name>
+    </assembly>
+    <members>
+        <member name="T:senai.hroads.webAPI.Contexts.HroadsContext">
+            <summary>
+            classe responsável pelo contexto do projeto, faz a comunicação entre a API e o Banco de Dados
+            </summary>
+        </member>
+        <member name="M:senai.hroads.webAPI.Contexts.HroadsContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            define as opções de "construção" do BD
+            </summary>
+            <param name="optionsBuilder"> objeto com as configurações definidas </param>
+        </member>
+        <member name="M:senai.hroads.webAPI.Contexts.HroadsContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            define as informações que estarão dentro de cada tabela (um INSERT)
+            </summary>
+            <param name="modelBuilder"> objeto com as modelagens das informações das tabelas definidas </param>
+        </member>
+        <member name="F:senai.hroads.webAPI.Repositories.ClasseRepository.context">
+            <summary>
+            esse objeto "context" é por onde conseguimos chamar as entidades/tabelas com seus atributos
+            puxarmos o "context" porque ele vai vir com as coisas que podem ter sido atualizadas no SQL Server e acompanha também os comando "ToList" e entre outros, por isso não chamamos a Domain ao invés do "context"
+            </summary>
+        </member>
+    </members>
+</doc>

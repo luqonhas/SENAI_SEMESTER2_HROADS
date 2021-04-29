@@ -10,11 +10,11 @@ namespace senai.hroads.webAPI.Interfaces
     {
         List<ClasseDomain> Listar();
 
-        ClasseDomain BuscarPorId();
+        ClasseDomain BuscarPorId(int id);
 
         void Cadastrar(ClasseDomain novaClasse);
 
-        void Atualizar(int id, ClasseDomain ClasseAtualizada);
+        void Atualizar(int id, ClasseDomain classeAtualizada);
 
         void Deletar(int id);
     }

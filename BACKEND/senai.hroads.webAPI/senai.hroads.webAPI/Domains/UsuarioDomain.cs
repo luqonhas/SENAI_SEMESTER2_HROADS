@@ -15,18 +15,19 @@ namespace senai.hroads.webAPI.Domains
         public int idUsuario { get; set; }
 
         [Column(TypeName = "VARCHAR(150)")]
-        [Required(ErrorMessage = "o e-mail do usuário é obrigatório!")]
+        [Required(ErrorMessage = "O e-mail do usuário é obrigatório!")]
         [DataType(DataType.EmailAddress)]
         public string email { get; set; }
 
         [Column(TypeName = "VARCHAR(150)")]
-        [Required(ErrorMessage = "o senha do usuário é obrigatório!")]
+        [Required(ErrorMessage = "A senha do usuário é obrigatório!")]
         [DataType(DataType.Password)]
         public string senha { get; set; }
-        
+
         public int idTipoUsuario { get; set; }
 
         [ForeignKey("idTipoUsuario")]
         public TipoUsuarioDomain tipoUsuario { get; set; }
+        public List<PersonagemDomain> personagens { get; set; }
     }
 }

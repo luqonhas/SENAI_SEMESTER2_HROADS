@@ -26,7 +26,7 @@ namespace senai.hroads.webAPI.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // aqui está logando no nosso SQL Server
-            optionsBuilder.UseSqlServer("Server=DESKTOP-HMTUR0P; Database=T_HROADS; user Id=SA; pwd=Soufoda2;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-HMTUR0P; Database=T_HROADS_CODEFIRST; user Id=SA; pwd=Soufoda2;");
             // executa a função acima
             base.OnConfiguring(optionsBuilder);
         }

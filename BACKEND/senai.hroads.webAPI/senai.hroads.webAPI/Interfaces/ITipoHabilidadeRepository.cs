@@ -10,7 +10,7 @@ namespace senai.hroads.webAPI.Interfaces
     {
         List<TipoHabilidadeDomain> Listar();
 
-        TipoHabilidadeDomain BuscarPorId();
+        TipoHabilidadeDomain BuscarPorId(int id);
 
         void Cadastrar(TipoHabilidadeDomain novoTipoHabilidade);
 
