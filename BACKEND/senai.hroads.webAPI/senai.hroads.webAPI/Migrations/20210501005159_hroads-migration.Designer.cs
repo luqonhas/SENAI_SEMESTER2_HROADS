@@ -10,7 +10,7 @@ using senai.hroads.webAPI.Contexts;
 namespace senai.hroads.webAPI.Migrations
 {
     [DbContext(typeof(HroadsContext))]
-    [Migration("20210428020202_hroads-migration")]
+    [Migration("20210501005159_hroads-migration")]
     partial class hroadsmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,16 +28,11 @@ namespace senai.hroads.webAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("PersonagemDomainidPersonagem")
-                        .HasColumnType("int");
-
                     b.Property<string>("nomeClasse")
                         .IsRequired()
                         .HasColumnType("VARCHAR(150)");
 
                     b.HasKey("idClasse");
-
-                    b.HasIndex("PersonagemDomainidPersonagem");
 
                     b.ToTable("Classes");
 
@@ -149,6 +144,9 @@ namespace senai.hroads.webAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("UsuarioDomainidUsuario")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("dataAtualizacao")
                         .HasColumnType("DATE");
 
@@ -169,6 +167,8 @@ namespace senai.hroads.webAPI.Migrations
                         .HasColumnType("VARCHAR(150)");
 
                     b.HasKey("idPersonagem");
+
+                    b.HasIndex("UsuarioDomainidUsuario");
 
                     b.HasIndex("idClasse");
 
@@ -214,21 +214,11 @@ namespace senai.hroads.webAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("HabilidadeDomainidHabilidade")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UsuarioDomainidUsuario")
-                        .HasColumnType("int");
-
                     b.Property<string>("nomeTipoHabilidade")
                         .IsRequired()
                         .HasColumnType("VARCHAR(150)");
 
                     b.HasKey("idTipoHabilidade");
-
-                    b.HasIndex("HabilidadeDomainidHabilidade");
-
-                    b.HasIndex("UsuarioDomainidUsuario");
 
                     b.ToTable("TipoHabilidades");
 
@@ -330,13 +320,6 @@ namespace senai.hroads.webAPI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("senai.hroads.webAPI.Domains.ClasseDomain", b =>
-                {
-                    b.HasOne("senai.hroads.webAPI.Domains.PersonagemDomain", null)
-                        .WithMany("classes")
-                        .HasForeignKey("PersonagemDomainidPersonagem");
-                });
-
             modelBuilder.Entity("senai.hroads.webAPI.Domains.ClasseHabilidadeDomain", b =>
                 {
                     b.HasOne("senai.hroads.webAPI.Domains.ClasseDomain", "classe")
@@ -365,6 +348,10 @@ namespace senai.hroads.webAPI.Migrations
 
             modelBuilder.Entity("senai.hroads.webAPI.Domains.PersonagemDomain", b =>
                 {
+                    b.HasOne("senai.hroads.webAPI.Domains.UsuarioDomain", null)
+                        .WithMany("personagens")
+                        .HasForeignKey("UsuarioDomainidUsuario");
+
                     b.HasOne("senai.hroads.webAPI.Domains.ClasseDomain", "classe")
                         .WithMany()
                         .HasForeignKey("idClasse")
@@ -372,17 +359,6 @@ namespace senai.hroads.webAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("classe");
-                });
-
-            modelBuilder.Entity("senai.hroads.webAPI.Domains.TipoHabilidadeDomain", b =>
-                {
-                    b.HasOne("senai.hroads.webAPI.Domains.HabilidadeDomain", null)
-                        .WithMany("tipoHabilidades")
-                        .HasForeignKey("HabilidadeDomainidHabilidade");
-
-                    b.HasOne("senai.hroads.webAPI.Domains.UsuarioDomain", null)
-                        .WithMany("tipoUsuarios")
-                        .HasForeignKey("UsuarioDomainidUsuario");
                 });
 
             modelBuilder.Entity("senai.hroads.webAPI.Domains.UsuarioDomain", b =>
@@ -396,19 +372,9 @@ namespace senai.hroads.webAPI.Migrations
                     b.Navigation("tipoUsuario");
                 });
 
-            modelBuilder.Entity("senai.hroads.webAPI.Domains.HabilidadeDomain", b =>
-                {
-                    b.Navigation("tipoHabilidades");
-                });
-
-            modelBuilder.Entity("senai.hroads.webAPI.Domains.PersonagemDomain", b =>
-                {
-                    b.Navigation("classes");
-                });
-
             modelBuilder.Entity("senai.hroads.webAPI.Domains.UsuarioDomain", b =>
                 {
-                    b.Navigation("tipoUsuarios");
+                    b.Navigation("personagens");
                 });
 #pragma warning restore 612, 618
         }

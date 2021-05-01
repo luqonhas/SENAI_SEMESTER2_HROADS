@@ -6,6 +6,7 @@ using senai.hroads.webAPI.Interfaces;
 using senai.hroads.webAPI.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,48 +28,101 @@ namespace senai.hroads.webAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_personagemRepository.Listar());
+            try
+            {
+                return Ok(_personagemRepository.Listar());
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("ordem")]
+        public IActionResult GetOrderBy()
+        {
+            try
+            {
+                return Ok(_personagemRepository.ListarOrdenado());
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("jogadores")]
+        public IActionResult GetWithPlayers()
+        {
+            try
+            {
+                int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+
+                return Ok(_personagemRepository.ListarComJogadores(idUsuario));
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            PersonagemDomain personagemBuscado = _personagemRepository.BuscarPorId(id);
-
-            if (personagemBuscado != null)
+            try
             {
+                PersonagemDomain personagemBuscado = _personagemRepository.BuscarPorId(id);
+
+                if (personagemBuscado == null)
+                {
+                    return NotFound("Nenhum personagem encontrado!");
+                }
+
                 return Ok(personagemBuscado);
             }
-
-            return NotFound("Nenhum personagem encontrado!");
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
-        [Authorize(Roles = "2")]
+        [Authorize(Roles = "JOGADOR")]
         [HttpPost]
         public IActionResult Post(PersonagemDomain novoPersonagem)
         {
             try
             {
-                if (String.IsNullOrWhiteSpace(novoPersonagem.nomePersonagem))
-                {
-                    return NotFound("Campo 'nomePersonagem' obrigatório!");
-                }
-                if (String.IsNullOrWhiteSpace(novoPersonagem.idClasse.ToString()))
-                {
-                    return NotFound("Campo 'idClasse' obrigatório!");
-                }
-                if (String.IsNullOrWhiteSpace(novoPersonagem.maxVida.ToString()))
-                {
-                    return NotFound("Campo 'maxVida' obrigatório!");
-                }
-                if (String.IsNullOrWhiteSpace(novoPersonagem.maxMana.ToString()))
-                {
-                    return NotFound("Campo 'maxMana' obrigatório!");
-                }
-                else
-                    _personagemRepository.Cadastrar(novoPersonagem);
+                int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
 
-                return StatusCode(201);
+                PersonagemDomain personagemBuscado = _personagemRepository.BuscarPorNome(novoPersonagem.nomePersonagem);
+
+                if (personagemBuscado == null)
+                {
+                    if (String.IsNullOrWhiteSpace(novoPersonagem.nomePersonagem))
+                    {
+                        return NotFound("Campo 'nomePersonagem' obrigatório!");
+                    }
+                    if (String.IsNullOrWhiteSpace(novoPersonagem.idClasse.ToString()))
+                    {
+                        return NotFound("Campo 'idClasse' obrigatório!");
+                    }
+                    if (String.IsNullOrWhiteSpace(novoPersonagem.maxVida.ToString()))
+                    {
+                        return NotFound("Campo 'maxVida' obrigatório!");
+                    }
+                    if (String.IsNullOrWhiteSpace(novoPersonagem.maxMana.ToString()))
+                    {
+                        return NotFound("Campo 'maxMana' obrigatório!");
+                    }
+                    else
+                        _personagemRepository.Cadastrar(novoPersonagem, idUsuario);
+
+                    return StatusCode(201);
+                }
+
+                return BadRequest("Não foi possível cadastrar, nome de personagem já existente!");
             }
             catch (Exception codErro)
             {
@@ -80,18 +134,55 @@ namespace senai.hroads.webAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, PersonagemDomain personagemAtualizado)
         {
-            _personagemRepository.Atualizar(id, personagemAtualizado);
+            try
+            {
+                PersonagemDomain personagemBuscado = _personagemRepository.BuscarPorId(id);
 
-            return StatusCode(204);
+                if (personagemBuscado != null)
+                {
+                    PersonagemDomain nomeBuscado = _personagemRepository.BuscarPorNome(personagemAtualizado.nomePersonagem);
+
+                    if (nomeBuscado == null)
+                    {
+                        _personagemRepository.Atualizar(id, personagemAtualizado);
+
+                        return StatusCode(204);
+                    }
+                    else
+                        return BadRequest("Já existe um personagem com esse nome!");
+                }
+
+                return NotFound("Personagem não encontrado!");
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
         [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _personagemRepository.Deletar(id);
+            try
+            {
+                PersonagemDomain personagemBuscado = _personagemRepository.BuscarPorId(id);
 
-            return StatusCode(204);
+                if (personagemBuscado != null)
+                {
+                    _personagemRepository.Deletar(id);
+
+                    return StatusCode(204);
+                }
+
+                return NotFound("Personagem não encontrado!");
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
+
+
     }
 }

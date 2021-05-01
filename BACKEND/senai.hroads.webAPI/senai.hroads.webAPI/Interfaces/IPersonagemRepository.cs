@@ -10,9 +10,15 @@ namespace senai.hroads.webAPI.Interfaces
     {
         List<PersonagemDomain> Listar();
 
+        List<PersonagemDomain> ListarOrdenado();
+
+        List<PersonagemDomain> ListarComJogadores(int id);
+
         PersonagemDomain BuscarPorId(int id);
 
-        void Cadastrar(PersonagemDomain novoPersonagem);
+        PersonagemDomain BuscarPorNome(string nome);
+
+        void Cadastrar(PersonagemDomain novoPersonagem, int id);
 
         void Atualizar(int id, PersonagemDomain personagemAtualizado);
 

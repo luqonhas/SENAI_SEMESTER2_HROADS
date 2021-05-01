@@ -44,5 +44,7 @@ namespace senai.hroads.webAPI.Domains
         //
         [ForeignKey("idClasse")]
         public ClasseDomain classe { get; set; }
+
+        public UsuarioDomain usuario { get; set; }
     }
 }

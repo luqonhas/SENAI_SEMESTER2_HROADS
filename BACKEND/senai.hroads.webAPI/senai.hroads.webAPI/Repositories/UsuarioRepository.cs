@@ -80,8 +80,7 @@ namespace senai.hroads.webAPI.Repositories
                 idUsuario = x.idUsuario,
                 email = x.email,
                 idTipoUsuario = x.idTipoUsuario,
-                tipoUsuario = x.tipoUsuario,
-                personagens = x.personagens
+                tipoUsuario = x.tipoUsuario
             })
             .Where(x => x.tipoUsuario.idTipoUsuario == 2);
 
