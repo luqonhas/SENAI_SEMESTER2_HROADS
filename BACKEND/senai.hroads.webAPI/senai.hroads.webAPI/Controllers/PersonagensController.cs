@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using senai.hroads.webAPI.Domains;
 using senai.hroads.webAPI.Interfaces;
 using senai.hroads.webAPI.Repositories;
+using senai.hroads.webAPI.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -123,6 +124,44 @@ namespace senai.hroads.webAPI.Controllers
                 }
 
                 return BadRequest("Não foi possível cadastrar, nome de personagem já existente!");
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
+        }
+
+        [Authorize]
+        [HttpPatch]
+        public IActionResult Patch(int id, PersonagemViewModel personagemAtualizado)
+        {
+            try
+            {
+                PersonagemDomain personagemBuscado = _personagemRepository.BuscarPorId(id);
+
+                PersonagemDomain personagemBuscadoNome = _personagemRepository.BuscarPorNome(personagemAtualizado.nomePersonagem);
+
+                if (personagemBuscadoNome == null)
+                {
+                    if (personagemBuscado != null)
+                    {
+                        personagemBuscado = new PersonagemDomain
+                        {
+                            nomePersonagem = personagemAtualizado.nomePersonagem,
+                            maxVida = personagemAtualizado.maxVida,
+                            maxMana = personagemAtualizado.maxMana,
+                            idClasse = personagemAtualizado.idClasse
+                        };
+
+                        _personagemRepository.Atualizar(id, personagemBuscado);
+
+                        return StatusCode(204);
+                    }
+
+                    return NotFound("Personagem não encontrado!");
+                }
+
+                return NotFound("Não foi possível atualizar, nome de personagem já existente!");
             }
             catch (Exception codErro)
             {

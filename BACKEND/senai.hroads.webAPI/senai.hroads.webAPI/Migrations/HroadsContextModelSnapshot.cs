@@ -142,9 +142,6 @@ namespace senai.hroads.webAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("UsuarioDomainidUsuario")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("dataAtualizacao")
                         .HasColumnType("DATE");
 
@@ -164,11 +161,14 @@ namespace senai.hroads.webAPI.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(150)");
 
+                    b.Property<int?>("usuarioidUsuario")
+                        .HasColumnType("int");
+
                     b.HasKey("idPersonagem");
 
-                    b.HasIndex("UsuarioDomainidUsuario");
-
                     b.HasIndex("idClasse");
+
+                    b.HasIndex("usuarioidUsuario");
 
                     b.ToTable("Personagens");
 
@@ -346,17 +346,19 @@ namespace senai.hroads.webAPI.Migrations
 
             modelBuilder.Entity("senai.hroads.webAPI.Domains.PersonagemDomain", b =>
                 {
-                    b.HasOne("senai.hroads.webAPI.Domains.UsuarioDomain", null)
-                        .WithMany("personagens")
-                        .HasForeignKey("UsuarioDomainidUsuario");
-
                     b.HasOne("senai.hroads.webAPI.Domains.ClasseDomain", "classe")
                         .WithMany()
                         .HasForeignKey("idClasse")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("senai.hroads.webAPI.Domains.UsuarioDomain", "usuario")
+                        .WithMany("personagens")
+                        .HasForeignKey("usuarioidUsuario");
+
                     b.Navigation("classe");
+
+                    b.Navigation("usuario");
                 });
 
             modelBuilder.Entity("senai.hroads.webAPI.Domains.UsuarioDomain", b =>

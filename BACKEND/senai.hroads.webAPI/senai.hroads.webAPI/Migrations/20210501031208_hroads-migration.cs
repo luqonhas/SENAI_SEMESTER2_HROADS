@@ -125,7 +125,7 @@ namespace senai.hroads.webAPI.Migrations
                     dataAtualizacao = table.Column<DateTime>(type: "DATE", nullable: false),
                     dataCriacao = table.Column<DateTime>(type: "DATE", nullable: false),
                     idClasse = table.Column<int>(type: "int", nullable: false),
-                    UsuarioDomainidUsuario = table.Column<int>(type: "int", nullable: true)
+                    usuarioidUsuario = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -137,8 +137,8 @@ namespace senai.hroads.webAPI.Migrations
                         principalColumn: "idClasse",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Personagens_Usuarios_UsuarioDomainidUsuario",
-                        column: x => x.UsuarioDomainidUsuario,
+                        name: "FK_Personagens_Usuarios_usuarioidUsuario",
+                        column: x => x.usuarioidUsuario,
                         principalTable: "Usuarios",
                         principalColumn: "idUsuario",
                         onDelete: ReferentialAction.Restrict);
@@ -190,12 +190,12 @@ namespace senai.hroads.webAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Personagens",
-                columns: new[] { "idPersonagem", "UsuarioDomainidUsuario", "dataAtualizacao", "dataCriacao", "idClasse", "maxMana", "maxVida", "nomePersonagem" },
+                columns: new[] { "idPersonagem", "dataAtualizacao", "dataCriacao", "idClasse", "maxMana", "maxVida", "nomePersonagem", "usuarioidUsuario" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2019, 1, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 80, 100, "DeuBug" },
-                    { 2, null, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2016, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 100, 70, "BitBug" },
-                    { 3, null, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2018, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 60, 75, "Fer7" }
+                    { 1, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2019, 1, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 80, 100, "DeuBug", null },
+                    { 2, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2016, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 100, 70, "BitBug", null },
+                    { 3, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2018, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 60, 75, "Fer7", null }
                 });
 
             migrationBuilder.InsertData(
@@ -228,9 +228,9 @@ namespace senai.hroads.webAPI.Migrations
                 column: "idClasse");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Personagens_UsuarioDomainidUsuario",
+                name: "IX_Personagens_usuarioidUsuario",
                 table: "Personagens",
-                column: "UsuarioDomainidUsuario");
+                column: "usuarioidUsuario");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TipoUsuarios_permissao",

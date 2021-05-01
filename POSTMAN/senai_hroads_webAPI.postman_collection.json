@@ -70,7 +70,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTklTVFJBRE9SIiwiZXhwIjoxNjE5Nzk2NTc4LCJpc3MiOiJocm9hZHMud2ViQVBJIiwiYXVkIjoiaHJvYWRzLndlYkFQSSJ9.5Gey-3_srATShnn8rBWigblM76jH8svDGFUCMMMN5Cc",
 									"type": "string"
 								}
 							]
@@ -79,7 +79,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nomeClasse\": \"Endermage\"\r\n}",
+							"raw": "{\r\n    \"nomeClasse\": \"Arcanista\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -109,7 +109,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTklTVFJBRE9SIiwiZXhwIjoxNjE5Nzk3MzQ5LCJpc3MiOiJocm9hZHMud2ViQVBJIiwiYXVkIjoiaHJvYWRzLndlYkFQSSJ9.HedLNhdMJOaHEoRjRF18-RO8HDRbwKHfUUlc_P_At0A",
 									"type": "string"
 								}
 							]
@@ -118,7 +118,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nomeClasse\": \"Stomper\"\r\n}",
+							"raw": "{\r\n    \"nomeClasse\": \"Arcanista\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -126,7 +126,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/classes/9",
+							"raw": "http://localhost:5000/api/classes/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -135,7 +135,7 @@
 							"path": [
 								"api",
 								"classes",
-								"9"
+								"10"
 							]
 						}
 					},
@@ -149,7 +149,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTklTVFJBRE9SIiwiZXhwIjoxNjE5Nzk5MTA5LCJpc3MiOiJocm9hZHMud2ViQVBJIiwiYXVkIjoiaHJvYWRzLndlYkFQSSJ9.uw-2_QFsbq0SZcrjObrUeYPY7Ve3MkOkhGyPL3ceqww",
 									"type": "string"
 								}
 							]
@@ -157,7 +157,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/classes/9",
+							"raw": "http://localhost:5000/api/classes/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -166,7 +166,7 @@
 							"path": [
 								"api",
 								"classes",
-								"9"
+								"10"
 							]
 						}
 					},
@@ -180,7 +180,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTklTVFJBRE9SIiwiZXhwIjoxNjE5ODAxMDY0LCJpc3MiOiJocm9hZHMud2ViQVBJIiwiYXVkIjoiaHJvYWRzLndlYkFQSSJ9.1ICA2cxXuO59dFyFhboKgUoa6FnXPA6y8Vu75GhjGrk",
 									"type": "string"
 								}
 							]
@@ -188,7 +188,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/classes/9",
+							"raw": "http://localhost:5000/api/classes/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -197,7 +197,7 @@
 							"path": [
 								"api",
 								"classes",
-								"9"
+								"10"
 							]
 						}
 					},
@@ -236,7 +236,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTklTVFJBRE9SIiwiZXhwIjoxNjE5ODAxMDY0LCJpc3MiOiJocm9hZHMud2ViQVBJIiwiYXVkIjoiaHJvYWRzLndlYkFQSSJ9.1ICA2cxXuO59dFyFhboKgUoa6FnXPA6y8Vu75GhjGrk",
 									"type": "string"
 								}
 							]
@@ -245,7 +245,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nomeHabilidade\": \"teste2\",\r\n    \"idTipoHabilidade\": 2\r\n}",
+							"raw": "{\r\n    \"nomeHabilidade\": \"teste\",\r\n    \"idTipoHabilidade\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -275,7 +275,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTklTVFJBRE9SIiwiZXhwIjoxNjE5ODAxMDY0LCJpc3MiOiJocm9hZHMud2ViQVBJIiwiYXVkIjoiaHJvYWRzLndlYkFQSSJ9.1ICA2cxXuO59dFyFhboKgUoa6FnXPA6y8Vu75GhjGrk",
 									"type": "string"
 								}
 							]
@@ -284,7 +284,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nomeHabilidade\": \"MAgogogoog\",\r\n    \"idTipoHabilidade\": 4\r\n}",
+							"raw": "{\r\n    \"nomeHabilidade\": \"MAgogogoog\",\r\n    \"idTipoHabilidade\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -292,7 +292,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/habilidades/7",
+							"raw": "http://localhost:5000/api/habilidades/11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -301,7 +301,7 @@
 							"path": [
 								"api",
 								"habilidades",
-								"7"
+								"11"
 							]
 						}
 					},
@@ -323,7 +323,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/habilidades/9",
+							"raw": "http://localhost:5000/api/habilidades/12",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -332,7 +332,7 @@
 							"path": [
 								"api",
 								"habilidades",
-								"9"
+								"12"
 							]
 						}
 					},
@@ -346,7 +346,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTklTVFJBRE9SIiwiZXhwIjoxNjE5ODAxMDY0LCJpc3MiOiJocm9hZHMud2ViQVBJIiwiYXVkIjoiaHJvYWRzLndlYkFQSSJ9.1ICA2cxXuO59dFyFhboKgUoa6FnXPA6y8Vu75GhjGrk",
 									"type": "string"
 								}
 							]
@@ -354,7 +354,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/habilidades/7",
+							"raw": "http://localhost:5000/api/habilidades/11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -363,7 +363,7 @@
 							"path": [
 								"api",
 								"habilidades",
-								"7"
+								"11"
 							]
 						}
 					},
@@ -548,7 +548,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTY1NzY2NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.ZGaYPRNVDpePuXI_EPNVLHjITy7yOM2puv92NA7NlBM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTg5MzYwMywiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.A6aYj0Jq_At50q1NrQSbmCj5WcryuVstqA3E20ad4VQ",
 									"type": "string"
 								}
 							]
@@ -573,11 +573,21 @@
 				{
 					"name": "Personagem.Cadastrar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTgzODgwNiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.Vpp_OjqxFwBRrEIoxknaLpZjhRFH_H-Gk6DXi4xGeXE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nomeClasse\": \"Endermage\"\r\n}",
+							"raw": "{\r\n    \"nomePersonagem\": \"Lucas\",\r\n    \"idClasse\": 2,\r\n    \"maxVida\": 100,\r\n    \"maxMana\": 80\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -918,6 +928,135 @@
 								"api",
 								"usuarios",
 								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "extras",
+			"item": [
+				{
+					"name": "Usuario.ListarComPersonagens",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTg5MjQ4NSwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.rxk9R7VB7DUYK1OllTt8qDr7On_0vmpZ6Pf3pmvKFSA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/usuarios/personagens",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"usuarios",
+								"personagens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario.ListarSemSenha",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTklTVFJBRE9SIiwiZXhwIjoxNjE5ODMwNzIwLCJpc3MiOiJocm9hZHMud2ViQVBJIiwiYXVkIjoiaHJvYWRzLndlYkFQSSJ9.rPylnWwvHAo9QrwPGp0DFYAHG7N84nBQYFmdFdROHC4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/usuarios/senha",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"usuarios",
+								"senha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Personagem.ListarComJogadores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTgzOTE4NiwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.wrTWySQEat9CjazY319jQWR_5e4jyG4-g3_321QUwFU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/personagens/jogadores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"personagens",
+								"jogadores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Personagem.ListarOrdenado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSk9HQURPUiIsImV4cCI6MTYxOTg5MjQ4NSwiaXNzIjoiaHJvYWRzLndlYkFQSSIsImF1ZCI6Imhyb2Fkcy53ZWJBUEkifQ.rxk9R7VB7DUYK1OllTt8qDr7On_0vmpZ6Pf3pmvKFSA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/personagens/ordem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"personagens",
+								"ordem"
 							]
 						}
 					},
