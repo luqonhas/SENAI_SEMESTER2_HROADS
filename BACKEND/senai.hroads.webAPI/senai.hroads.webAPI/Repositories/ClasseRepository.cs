@@ -17,29 +17,55 @@ namespace senai.hroads.webAPI.Repositories
         /// </summary>
         HroadsContext context = new HroadsContext();
 
-        public void Atualizar(int id, ClasseDomain classeAtualizada)
+        public bool Atualizar(int id, ClasseDomain classeAtualizada)
         {
-            // busca a classe atráves do seu id
-            ClasseDomain classeBuscada = context.Classes.Find(id);
+            // busca uma classe pelo id que foi passado como parâmetro
+            ClasseDomain classeBuscada = BuscarPorId(id);
 
-            // verifica se a classe tem um nome informado...
-            if (classeAtualizada.nomeClasse != null)
+            // busca uma classe pelo "nomeClasse" da classeAtualizada
+            ClasseDomain classeBuscadaNome = context.Classes.FirstOrDefault(x => x.nomeClasse == classeAtualizada.nomeClasse);
+
+            // se o "nomeClasse" da "classeAtualizada" for diferente de null e se a "classeBuscadaNome" for igual a null...
+            if (classeAtualizada.nomeClasse != null && classeBuscadaNome == null)
             {
-                // se tiver, atribui os novos valores aos valores existentes
+                // executa o método
+                // coloca o novo "nomeClasse" no lugar do antigo
                 classeBuscada.nomeClasse = classeAtualizada.nomeClasse;
-            }
-            //se não tiver...
-            // atualiza a classe que foi buscada e...
-            context.Classes.Update(classeBuscada);
 
-            // salva as informações para que sejam gravadas no BD
-            context.SaveChanges();
+                // atualiza o a tabela com a nova informação no "classeBuscada"
+                context.Classes.Update(classeBuscada);
+
+                // salva as alterações feitas
+                context.SaveChanges();
+
+                // retorna "true", e para conseguir colocar isso, tem que mudar o tipo do método de "void" para "bool" (true ou false)
+                return true;
+            }
+
+            // se for igual a null, retorna false e não executa o método
+            return false;
         }
 
         public ClasseDomain BuscarPorId(int id)
         {
             // retorna a primeira classe encontrada para o id informado
-            return context.Classes.FirstOrDefault(objClasse => objClasse.idClasse == id);
+            return context.Classes.FirstOrDefault(x => x.idClasse == id);
+        }
+
+        public ClasseDomain BuscarPorNome(string nome)
+        {
+            // busca uma classe pelo "nomeClasse" pelo "nome" que buscarem
+            ClasseDomain classeBuscada = context.Classes.FirstOrDefault(x => x.nomeClasse == nome);
+
+            // se a "classeBuscada" existir e for diferente de null...
+            if (classeBuscada != null)
+            {
+                // retorna uma "classeBuscada" com o nome buscado
+                return classeBuscada;
+            }
+
+            // se não, retorna null
+            return null;
         }
 
         public void Cadastrar(ClasseDomain novaClasse)
@@ -53,11 +79,8 @@ namespace senai.hroads.webAPI.Repositories
 
         public void Deletar(int id)
         {
-            // busca a classe atráves do seu id
-            ClasseDomain classeBuscada = context.Classes.Find(id);
-
             // remove a classe que foi encontrada e colocada dentro do "classeBuscada"
-            context.Classes.Remove(classeBuscada);
+            context.Classes.Remove(BuscarPorId(id));
 
             // salva as informações para que sejam gravadas no BD
             context.SaveChanges();

@@ -12,23 +12,41 @@ namespace senai.hroads.webAPI.Repositories
     {
         HroadsContext context = new HroadsContext();
 
-        public void Atualizar(int id, TipoHabilidadeDomain tipoHabilidadeAtualizado)
+        public bool Atualizar(int id, TipoHabilidadeDomain tipoHabilidadeAtualizado)
         {
-            TipoHabilidadeDomain tipoHabilidadeBuscado = context.TipoHabilidades.Find(id);
+            TipoHabilidadeDomain tipoBuscada = BuscarPorId(id);
 
-            if (tipoHabilidadeAtualizado != null)
+            TipoHabilidadeDomain tipoBuscadaNome = context.TipoHabilidades.FirstOrDefault(x => x.nomeTipoHabilidade == tipoHabilidadeAtualizado.nomeTipoHabilidade);
+
+            if (tipoHabilidadeAtualizado.nomeTipoHabilidade != null && tipoBuscadaNome == null)
             {
-                tipoHabilidadeBuscado.nomeTipoHabilidade = tipoHabilidadeAtualizado.nomeTipoHabilidade;
+                tipoBuscada.nomeTipoHabilidade = tipoHabilidadeAtualizado.nomeTipoHabilidade;
+
+                context.TipoHabilidades.Update(tipoBuscada);
+
+                context.SaveChanges();
+
+                return true;
             }
 
-            context.TipoHabilidades.Update(tipoHabilidadeBuscado);
-
-            context.SaveChanges();
+            return false;
         }
 
         public TipoHabilidadeDomain BuscarPorId(int id)
         {
             return context.TipoHabilidades.FirstOrDefault(x => x.idTipoHabilidade == id);
+        }
+
+        public TipoHabilidadeDomain BuscarPorNome(string nome)
+        {
+            TipoHabilidadeDomain tipoBuscada = context.TipoHabilidades.FirstOrDefault(x => x.nomeTipoHabilidade == nome);
+
+            if (tipoBuscada != null)
+            {
+                return tipoBuscada;
+            }
+
+            return null;
         }
 
         public void Cadastrar(TipoHabilidadeDomain novoTipoHabilidade)
@@ -40,9 +58,7 @@ namespace senai.hroads.webAPI.Repositories
 
         public void Deletar(int id)
         {
-            TipoHabilidadeDomain tipoHabilidadeBuscado = context.TipoHabilidades.Find(id);
-
-            context.TipoHabilidades.Remove(tipoHabilidadeBuscado);
+            context.TipoHabilidades.Remove(BuscarPorId(id));
 
             context.SaveChanges();
         }
@@ -51,5 +67,6 @@ namespace senai.hroads.webAPI.Repositories
         {
             return context.TipoHabilidades.ToList();
         }
+
     }
 }

@@ -12,9 +12,11 @@ namespace senai.hroads.webAPI.Interfaces
 
         TipoUsuarioDomain BuscarPorId(int id);
 
+        TipoUsuarioDomain BuscarPorNome(string nome);
+
         void Cadastrar(TipoUsuarioDomain novoTipoUsuario);
 
-        void Atualizar(int id, TipoUsuarioDomain tipoUsuarioAtualizado);
+        bool Atualizar(int id, TipoUsuarioDomain tipoUsuarioAtualizado);
 
         void Deletar(int id);
     }

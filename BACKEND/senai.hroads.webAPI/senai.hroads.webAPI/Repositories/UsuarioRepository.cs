@@ -13,28 +13,43 @@ namespace senai.hroads.webAPI.Repositories
     {
         HroadsContext context = new HroadsContext();
 
-        public void Atualizar(int id, UsuarioDomain usuarioAtualizado)
+        public bool Atualizar(int id, UsuarioDomain usuarioAtualizado)
         {
-            UsuarioDomain usuarioBuscado = context.Usuarios.Find(id);
+            UsuarioDomain usuarioBuscada = BuscarPorId(id);
 
-            if (usuarioAtualizado != null)
+            UsuarioDomain usuarioBuscadaEmail = context.Usuarios.FirstOrDefault(x => x.email == usuarioAtualizado.email);
+
+            if (usuarioAtualizado.email != null && usuarioBuscadaEmail == null && usuarioAtualizado.senha != null)
             {
-                usuarioBuscado.email = usuarioAtualizado.email;
+                usuarioBuscada.email = usuarioAtualizado.email;
+
+                usuarioBuscada.senha = usuarioAtualizado.senha;
+
+                context.Usuarios.Update(usuarioBuscada);
+
+                context.SaveChanges();
+
+                return true;
             }
 
-            if (usuarioAtualizado != null)
-            {
-                usuarioBuscado.senha = usuarioAtualizado.senha;
-            }
-
-            context.Usuarios.Update(usuarioBuscado);
-
-            context.SaveChanges();
+            return false;
         }
 
         public UsuarioDomain BuscarPorId(int id)
         {
             return context.Usuarios.Include(x => x.tipoUsuario).FirstOrDefault(x => x.idUsuario == id);
+        }
+
+        public UsuarioDomain BuscarPorEmail(string email)
+        {
+            UsuarioDomain usuarioBuscado = context.Usuarios.FirstOrDefault(x => x.email == email);
+
+            if (usuarioBuscado != null)
+            {
+                return usuarioBuscado;
+            }
+
+            return null;
         }
 
         public void Cadastrar(UsuarioDomain novoUsuario)
@@ -46,9 +61,7 @@ namespace senai.hroads.webAPI.Repositories
 
         public void Deletar(int id)
         {
-            UsuarioDomain usuarioBuscado = context.Usuarios.Find(id);
-
-            context.Usuarios.Remove(usuarioBuscado);
+            context.Usuarios.Remove(BuscarPorId(id));
 
             context.SaveChanges();
         }
@@ -58,6 +71,31 @@ namespace senai.hroads.webAPI.Repositories
             return context.Usuarios.Include(x => x.tipoUsuario).ToList();
         }
 
+        public List<UsuarioDomain> ListarSemSenha()
+        {
+            var usuarioSemSenha = context.Usuarios
+            .Include(x => x.tipoUsuario)
+            .Select(x => new UsuarioDomain()
+            {
+                idUsuario = x.idUsuario,
+                email = x.email,
+                idTipoUsuario = x.idTipoUsuario,
+                tipoUsuario = x.tipoUsuario,
+                personagens = x.personagens
+            })
+            .Where(x => x.tipoUsuario.idTipoUsuario == 2);
+
+            return usuarioSemSenha.ToList();
+        }
+
+        public List<UsuarioDomain> ListarComPersonagens(int id)
+        {
+            return context.Usuarios
+                .Include(x => x.tipoUsuario)
+                .Include(x => x.personagens)
+                .Where(x => x.idUsuario == id)
+                .ToList();
+        }
 
         public UsuarioDomain Logar(string email, string senha)
         {

@@ -28,36 +28,43 @@ namespace senai.hroads.webAPI.Controllers
         [HttpPost]
         public IActionResult Login(UsuarioDomain login)
         {
-            UsuarioDomain usuarioBuscado = _loginRepository.Logar(login.email, login.senha);
-
-            if (usuarioBuscado == null)
+            try
             {
-                return NotFound("E-mail ou senha inválidos!");
-            }
+                UsuarioDomain usuarioBuscado = _loginRepository.Logar(login.email, login.senha);
 
-            var claims = new[]
-            {
+                if (usuarioBuscado == null)
+                {
+                    return NotFound("E-mail ou senha inválidos!");
+                }
+
+                var claims = new[]
+                {
                 new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.email),
                 new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.idUsuario.ToString()),
                 new Claim(ClaimTypes.Role, usuarioBuscado.tipoUsuario.permissao)
             };
 
-            var secretkey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("hroads-chave-autenticacao"));
+                var secretkey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("hroads-chave-autenticacao"));
 
-            var credentials = new SigningCredentials(secretkey, SecurityAlgorithms.HmacSha256);
+                var credentials = new SigningCredentials(secretkey, SecurityAlgorithms.HmacSha256);
 
-            var token = new JwtSecurityToken(
-                issuer: "hroads.webAPI",
-                audience: "hroads.webAPI",
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(5),
-                signingCredentials: credentials
-            );
+                var token = new JwtSecurityToken(
+                    issuer: "hroads.webAPI",
+                    audience: "hroads.webAPI",
+                    claims: claims,
+                    expires: DateTime.Now.AddMinutes(5),
+                    signingCredentials: credentials
+                );
 
-            return Ok(new
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(token)
+                });
+            }
+            catch (Exception codErro)
             {
-                token = new JwtSecurityTokenHandler().WriteToken(token)
-            });
+                return BadRequest(codErro);
+            }
         }
 
     }

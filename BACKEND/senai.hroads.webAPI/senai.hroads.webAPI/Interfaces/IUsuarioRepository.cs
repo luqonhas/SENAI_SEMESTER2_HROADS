@@ -10,11 +10,17 @@ namespace senai.hroads.webAPI.Interfaces
     {
         List<UsuarioDomain> Listar();
 
+        List<UsuarioDomain> ListarComPersonagens(int id);
+
+        List<UsuarioDomain> ListarSemSenha();
+
         UsuarioDomain BuscarPorId(int id);
+
+        UsuarioDomain BuscarPorEmail(string email);
 
         void Cadastrar(UsuarioDomain novoUsuario);
 
-        void Atualizar(int id, UsuarioDomain usuarioAtualizado);
+        bool Atualizar(int id, UsuarioDomain usuarioAtualizado);
 
         void Deletar(int id);
 

@@ -27,37 +27,58 @@ namespace senai.hroads.webAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_tipoUsuarioRepository.Listar());
+            try
+            {
+                return Ok(_tipoUsuarioRepository.Listar());
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
         [Authorize]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            TipoUsuarioDomain tipoBuscado = _tipoUsuarioRepository.BuscarPorId(id);
-
-            if (tipoBuscado == null)
+            try
             {
-                return NotFound("Nenhuma tipo de usuário encontrado!");
-            }
+                TipoUsuarioDomain tipoBuscada = _tipoUsuarioRepository.BuscarPorId(id);
 
-            return Ok(tipoBuscado);
+                if (tipoBuscada == null)
+                {
+                    return NotFound("Nenhum tipo de usuário encontrado!");
+                }
+
+                return Ok(tipoBuscada);
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
-        public IActionResult Post(TipoUsuarioDomain novaTipo)
+        public IActionResult Post(TipoUsuarioDomain novoTipo)
         {
             try
             {
-                if (String.IsNullOrWhiteSpace(novaTipo.permissao))
-                {
-                    return NotFound("Campo 'permissao' obrigatório!");
-                }
-                else
-                    _tipoUsuarioRepository.Cadastrar(novaTipo);
+                TipoUsuarioDomain tipoBuscada = _tipoUsuarioRepository.BuscarPorNome(novoTipo.permissao);
 
-                return StatusCode(201);
+                if (tipoBuscada == null)
+                {
+                    if (String.IsNullOrWhiteSpace(novoTipo.permissao))
+                    {
+                        return NotFound("Campo 'permissao' obrigatório!");
+                    }
+                    else
+                        _tipoUsuarioRepository.Cadastrar(novoTipo);
+
+                    return StatusCode(201);
+                }
+
+                return BadRequest("Não foi possível cadastrar, tipo de usuário já existente!");
             }
             catch (Exception codErro)
             {
@@ -67,20 +88,55 @@ namespace senai.hroads.webAPI.Controllers
 
         [Authorize]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, TipoUsuarioDomain tipoAtualizada)
+        public IActionResult Put(int id, TipoUsuarioDomain tipoAtualizado)
         {
-            _tipoUsuarioRepository.Atualizar(id, tipoAtualizada);
+            try
+            {
+                TipoUsuarioDomain tipoBuscada = _tipoUsuarioRepository.BuscarPorId(id);
 
-            return StatusCode(204);
+                if (tipoBuscada != null)
+                {
+                    TipoUsuarioDomain permissaoBuscada = _tipoUsuarioRepository.BuscarPorNome(tipoAtualizado.permissao);
+
+                    if (permissaoBuscada == null)
+                    {
+                        _tipoUsuarioRepository.Atualizar(id, tipoAtualizado);
+
+                        return StatusCode(204);
+                    }
+                    else
+                        return BadRequest("Já existe um tipo de usuário com esse nome!");
+                }
+
+                return NotFound("Tipo de usuário não encontrado!");
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
         [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _tipoUsuarioRepository.Deletar(id);
+            try
+            {
+                TipoUsuarioDomain tipoBuscada = _tipoUsuarioRepository.BuscarPorId(id);
 
-            return StatusCode(204);
+                if (tipoBuscada != null)
+                {
+                    _tipoUsuarioRepository.Deletar(id);
+
+                    return StatusCode(204);
+                }
+
+                return NotFound("Tipo de usuário não encontrado!");
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
 

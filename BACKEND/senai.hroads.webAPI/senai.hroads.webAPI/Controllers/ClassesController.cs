@@ -26,20 +26,34 @@ namespace senai.hroads.webAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_classeRepository.Listar());
+            try
+            {
+                return Ok(_classeRepository.Listar());
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            ClasseDomain classeBuscada = _classeRepository.BuscarPorId(id);
-
-            if (classeBuscada == null)
+            try
             {
-                return NotFound("Nenhuma classe encontrada!");
-            }
+                ClasseDomain classeBuscada = _classeRepository.BuscarPorId(id);
 
-            return Ok(classeBuscada);
+                if (classeBuscada == null)
+                {
+                    return NotFound("Nenhuma classe encontrada!");
+                }
+
+                return Ok(classeBuscada);
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
         [Authorize(Roles = "ADMINISTRADOR")]
@@ -48,14 +62,20 @@ namespace senai.hroads.webAPI.Controllers
         {
             try
             {
-                if (String.IsNullOrWhiteSpace(novaClasse.nomeClasse))
+                // busca por um "nomeClasse" existente
+                ClasseDomain classeBuscada = _classeRepository.BuscarPorNome(novaClasse.nomeClasse);
+
+                // se na "classeBuscada" não conter um "nomeClasse" já existente...
+                if (classeBuscada == null)
                 {
-                    return NotFound("Campo 'nomeClasse' obrigatório!");
-                }
-                else
+                    // cadastra uma nova classe
                     _classeRepository.Cadastrar(novaClasse);
 
-                return StatusCode(201);
+                    return StatusCode(201);
+                }
+
+                // se já existir uma classe com esse nome, retorna um BadRequest
+                return BadRequest("Não foi possível cadastrar, classe já existente!");
             }
             catch (Exception codErro)
             {
@@ -67,18 +87,64 @@ namespace senai.hroads.webAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, ClasseDomain classeAtualizada)
         {
-            _classeRepository.Atualizar(id, classeAtualizada);
+            try
+            {
+                // busca pelo id colocado
+                ClasseDomain classeBuscada = _classeRepository.BuscarPorId(id);
 
-            return StatusCode(204);
+                // se o id na "classeBuscada" não possuir nenhuma classe...
+                if (classeBuscada != null)
+                {
+                    // busca se o novo nome existe no BD
+                    ClasseDomain nomeBuscado = _classeRepository.BuscarPorNome(classeAtualizada.nomeClasse);
+
+                    // se NÃO existir...
+                    if (nomeBuscado == null)
+                    {
+                        // cria normal
+                        _classeRepository.Atualizar(id, classeAtualizada);
+
+                        return StatusCode(204);
+                    }
+                    // se existir...
+                    else
+                        return BadRequest("Já existe uma classe com esse nome!");
+                }
+
+                // se não existir uma classe com o id colocado...
+                return NotFound("Classe não encontrada!");
+
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
         [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _classeRepository.Deletar(id);
+            try
+            {
+                ClasseDomain classeBuscada = _classeRepository.BuscarPorId(id);
 
-            return StatusCode(204);
+                // se o id buscado existir...
+                if (classeBuscada != null)
+                {
+                    // apaga
+                    _classeRepository.Deletar(id);
+
+                    return StatusCode(204);
+                }
+
+                // se não...
+                return NotFound("Classe não encontrada!");
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
     }

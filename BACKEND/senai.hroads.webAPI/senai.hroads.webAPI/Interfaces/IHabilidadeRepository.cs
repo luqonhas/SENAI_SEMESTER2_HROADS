@@ -12,9 +12,11 @@ namespace senai.hroads.webAPI.Interfaces
 
         HabilidadeDomain BuscarPorId(int id);
 
+        HabilidadeDomain BuscarPorNome(string nome);
+
         void Cadastrar(HabilidadeDomain novoHabilidade);
 
-        void Atualizar(int id, HabilidadeDomain habilidadeAtualizado);
+        bool Atualizar(int id, HabilidadeDomain habilidadeAtualizado);
 
         void Deletar(int id);
     }

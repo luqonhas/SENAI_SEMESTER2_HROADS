@@ -13,28 +13,42 @@ namespace senai.hroads.webAPI.Repositories
     {
         HroadsContext context = new HroadsContext();
         
-        public void Atualizar(int id, HabilidadeDomain habilidadeAtualizado)
+        public bool Atualizar(int id, HabilidadeDomain habilidadeAtualizado)
         {
-            HabilidadeDomain habilidadeBuscado = context.Habilidades.Find(id);
+            HabilidadeDomain habilidadeBuscada = BuscarPorId(id);
 
-            if (habilidadeAtualizado != null)
+            HabilidadeDomain habilidadeBuscadaNome = context.Habilidades.FirstOrDefault(x => x.nomeHabilidade == habilidadeAtualizado.nomeHabilidade);
+
+            if (habilidadeAtualizado.nomeHabilidade != null && habilidadeBuscadaNome == null)
             {
-                habilidadeBuscado.nomeHabilidade = habilidadeAtualizado.nomeHabilidade;
+                habilidadeBuscada.nomeHabilidade = habilidadeAtualizado.nomeHabilidade;
+
+                context.Habilidades.Update(habilidadeBuscada);
+
+                context.SaveChanges();
+
+                return true;
             }
 
-            if (habilidadeAtualizado != null)
-            {
-                habilidadeBuscado.idTipoHabilidade = habilidadeAtualizado.idTipoHabilidade;
-            }
-
-            context.Habilidades.Update(habilidadeBuscado);
-
-            context.SaveChanges();
+            return false;
         }
 
         public HabilidadeDomain BuscarPorId(int id)
         {
+            // retorna a primeira classe encontrada para o id informado
             return context.Habilidades.Include(x => x.tipoHabilidade).FirstOrDefault(x => x.idHabilidade == id);
+        }
+
+        public HabilidadeDomain BuscarPorNome(string nome)
+        {
+            HabilidadeDomain habilidadeBuscada = context.Habilidades.FirstOrDefault(x => x.nomeHabilidade == nome);
+
+            if (habilidadeBuscada != null)
+            {
+                return habilidadeBuscada;
+            }
+
+            return null;
         }
 
         public void Cadastrar(HabilidadeDomain novoHabilidade)
@@ -46,9 +60,7 @@ namespace senai.hroads.webAPI.Repositories
 
         public void Deletar(int id)
         {
-            HabilidadeDomain habilidadeBuscado = context.Habilidades.Find(id);
-
-            context.Habilidades.Remove(habilidadeBuscado);
+            context.Habilidades.Remove(BuscarPorId(id));
 
             context.SaveChanges();
         }

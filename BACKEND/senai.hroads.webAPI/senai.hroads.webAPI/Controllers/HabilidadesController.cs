@@ -26,40 +26,52 @@ namespace senai.hroads.webAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_habilidadeRepository.Listar());
+            try
+            {
+                return Ok(_habilidadeRepository.Listar());
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            HabilidadeDomain habilidadeBuscada = _habilidadeRepository.BuscarPorId(id);
-
-            if (habilidadeBuscada != null)
+            try
             {
+                HabilidadeDomain habilidadeBuscada = _habilidadeRepository.BuscarPorId(id);
+
+                if (habilidadeBuscada == null)
+                {
+                    return NotFound("Nenhuma habilidade encontrada!");
+                }
+
                 return Ok(habilidadeBuscada);
             }
-
-            return NotFound("Nenhuma habilidade encontrada! :c");
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
         public IActionResult Post(HabilidadeDomain novaHabilidade)
         {
             try
             {
-                if (String.IsNullOrWhiteSpace(novaHabilidade.nomeHabilidade))
+                HabilidadeDomain habilidadeBuscada = _habilidadeRepository.BuscarPorNome(novaHabilidade.nomeHabilidade);
+
+                if (habilidadeBuscada == null)
                 {
-                    return NotFound("Campo 'nomeHabilidade' obrigatório!");
-                }
-                if (String.IsNullOrWhiteSpace(novaHabilidade.idTipoHabilidade.ToString()))
-                {
-                    return NotFound("Campo 'idTipoHabilidade' obrigatório!");
-                }
-                else
                     _habilidadeRepository.Cadastrar(novaHabilidade);
 
-                return StatusCode(201);
+                    return StatusCode(201);
+                }
+
+                return BadRequest("Não foi possível cadastrar, habilidade já existente!");
             }
             catch (Exception codErro)
             {
@@ -71,18 +83,53 @@ namespace senai.hroads.webAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, HabilidadeDomain habilidadeAtualizada)
         {
-            _habilidadeRepository.Atualizar(id, habilidadeAtualizada);
+            try
+            {
+                HabilidadeDomain habilidadeBuscada = _habilidadeRepository.BuscarPorId(id);
 
-            return StatusCode(204);
+                if (habilidadeBuscada != null)
+                {
+                    HabilidadeDomain nomeBuscado = _habilidadeRepository.BuscarPorNome(habilidadeAtualizada.nomeHabilidade);
+
+                    if (nomeBuscado == null)
+                    {
+                        _habilidadeRepository.Atualizar(id, habilidadeAtualizada);
+
+                        return StatusCode(204);
+                    }
+                    else
+                        return BadRequest("Já existe uma habilidade com esse nome!");
+                }
+
+                return NotFound("Habilidade não encontrada!");
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
         [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _habilidadeRepository.Deletar(id);
+            try
+            {
+                HabilidadeDomain habilidadeBuscada = _habilidadeRepository.BuscarPorId(id);
 
-            return StatusCode(204);
+                if (habilidadeBuscada != null)
+                {
+                    _habilidadeRepository.Deletar(id);
+
+                    return StatusCode(204);
+                }
+
+                return NotFound("Habilidade não encontrada!");
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
 

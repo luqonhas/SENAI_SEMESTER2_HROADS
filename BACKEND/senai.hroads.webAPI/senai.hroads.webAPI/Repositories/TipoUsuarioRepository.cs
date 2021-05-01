@@ -12,23 +12,41 @@ namespace senai.hroads.webAPI.Repositories
     {
         HroadsContext context = new HroadsContext();
 
-        public void Atualizar(int id, TipoUsuarioDomain tipoUsuarioAtualizado)
+        public bool Atualizar(int id, TipoUsuarioDomain tipoUsuarioAtualizado)
         {
-            TipoUsuarioDomain tipoBuscado = context.TipoUsuarios.Find(id);
+            TipoUsuarioDomain tipoBuscada = BuscarPorId(id);
 
-            if (tipoUsuarioAtualizado != null)
+            TipoUsuarioDomain tipoBuscadaPermissao = context.TipoUsuarios.FirstOrDefault(x => x.permissao == tipoUsuarioAtualizado.permissao);
+
+            if (tipoUsuarioAtualizado.permissao != null && tipoBuscadaPermissao == null)
             {
-                tipoBuscado.permissao = tipoUsuarioAtualizado.permissao;
+                tipoBuscada.permissao = tipoUsuarioAtualizado.permissao;
+
+                context.TipoUsuarios.Update(tipoBuscada);
+
+                context.SaveChanges();
+
+                return true;
             }
 
-            context.TipoUsuarios.Update(tipoBuscado);
-
-            context.SaveChanges();
+            return false;
         }
 
         public TipoUsuarioDomain BuscarPorId(int id)
         {
             return context.TipoUsuarios.FirstOrDefault(x => x.idTipoUsuario == id);
+        }
+
+        public TipoUsuarioDomain BuscarPorNome(string permissao)
+        {
+            TipoUsuarioDomain tipoBuscada = context.TipoUsuarios.FirstOrDefault(x => x.permissao == permissao);
+
+            if (tipoBuscada != null)
+            {
+                return tipoBuscada;
+            }
+
+            return null;
         }
 
         public void Cadastrar(TipoUsuarioDomain novoTipoUsuario)
@@ -40,9 +58,7 @@ namespace senai.hroads.webAPI.Repositories
 
         public void Deletar(int id)
         {
-            TipoUsuarioDomain tipoBuscado = context.TipoUsuarios.Find(id);
-
-            context.TipoUsuarios.Remove(tipoBuscado);
+            context.TipoUsuarios.Remove(BuscarPorId(id));
 
             context.SaveChanges();
         }
@@ -51,5 +67,6 @@ namespace senai.hroads.webAPI.Repositories
         {
             return context.TipoUsuarios.ToList();
         }
+
     }
 }

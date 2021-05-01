@@ -26,36 +26,57 @@ namespace senai.hroads.webAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_tipoHabilidadeRepository.Listar());
+            try
+            {
+                return Ok(_tipoHabilidadeRepository.Listar());
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            TipoHabilidadeDomain tipoHabilidadeBuscado = _tipoHabilidadeRepository.BuscarPorId(id);
-
-            if (tipoHabilidadeBuscado != null)
+            try
             {
-                return Ok(tipoHabilidadeBuscado);
-            }
+                TipoHabilidadeDomain tipoBuscada = _tipoHabilidadeRepository.BuscarPorId(id);
 
-            return NotFound("Nenhum tipo de habilidade encontrada! :c");
+                if (tipoBuscada == null)
+                {
+                    return NotFound("Nenhum tipo de habilidade encontrada!");
+                }
+
+                return Ok(tipoBuscada);
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
         public IActionResult Post(TipoHabilidadeDomain novoTipo)
         {
             try
             {
-                if (String.IsNullOrWhiteSpace(novoTipo.nomeTipoHabilidade))
-                {
-                    return NotFound("Campo 'nomeTipoHabilidade' obrigatório!");
-                }
-                else
-                    _tipoHabilidadeRepository.Cadastrar(novoTipo);
+                TipoHabilidadeDomain tipoBuscada = _tipoHabilidadeRepository.BuscarPorNome(novoTipo.nomeTipoHabilidade);
 
-                return StatusCode(201);
+                if (tipoBuscada == null)
+                {
+                    if (String.IsNullOrWhiteSpace(novoTipo.nomeTipoHabilidade))
+                    {
+                        return NotFound("Campo 'nomeTipoHabilidade' obrigatório!");
+                    }
+                    else
+                        _tipoHabilidadeRepository.Cadastrar(novoTipo);
+
+                    return StatusCode(201);
+                }
+
+                return BadRequest("Não foi possível cadastrar, tipo de habilidade já existente!");
             }
             catch (Exception codErro)
             {
@@ -67,18 +88,53 @@ namespace senai.hroads.webAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, TipoHabilidadeDomain tipoAtualizado)
         {
-            _tipoHabilidadeRepository.Atualizar(id, tipoAtualizado);
+            try
+            {
+                TipoHabilidadeDomain tipoBuscada = _tipoHabilidadeRepository.BuscarPorId(id);
 
-            return StatusCode(204);
+                if (tipoBuscada != null)
+                {
+                    TipoHabilidadeDomain nomeBuscado = _tipoHabilidadeRepository.BuscarPorNome(tipoAtualizado.nomeTipoHabilidade);
+
+                    if (nomeBuscado == null)
+                    {
+                        _tipoHabilidadeRepository.Atualizar(id, tipoAtualizado);
+
+                        return StatusCode(204);
+                    }
+                    else
+                        return BadRequest("Já existe um tipo de habilidade com esse nome!");
+                }
+
+                return NotFound("Tipo de habilidade não encontrada!");
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
         [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _tipoHabilidadeRepository.Deletar(id);
+            try
+            {
+                TipoHabilidadeDomain tipoBuscada = _tipoHabilidadeRepository.BuscarPorId(id);
 
-            return StatusCode(204);
+                if (tipoBuscada != null)
+                {
+                    _tipoHabilidadeRepository.Deletar(id);
+
+                    return StatusCode(204);
+                }
+
+                return NotFound("Tipo de habilidade não encontrada!");
+            }
+            catch (Exception codErro)
+            {
+                return BadRequest(codErro);
+            }
         }
 
 
