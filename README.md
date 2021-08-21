@@ -1,2 +1,2 @@
-# SENAI_SEMESTER2_HROADS
-Secondary project of the second semester of the technical course on Systems Development at Escola SENAI de Informática.
+# SENAI_SEMESTRE2_HROADS
+Projeto de secundário do segundo semestre do curso técnico de Desenvolvimento de Sistemas da Escola SENAI de Informática.
